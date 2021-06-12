@@ -4,15 +4,39 @@ using UnityEngine;
 
 public class Pj_HandController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    List<Sprite> handSprites;
+    string currentHandPlayer = "1";
+    public float handSpeed = 10f;
+    Vector3 movement;
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
+        if (Input.GetButton("ButtonA" + currentHandPlayer))
+        {
+            print("Button: " + "ButtonA" + currentHandPlayer + "Pressed");
+        }
+        if (Input.GetButton("ButtonB" + currentHandPlayer))
+        {
+            print("Button: " + "ButtonB" + currentHandPlayer + "Pressed");
+        }
+
+
+        float v = Input.GetAxis("Vertical" + currentHandPlayer);
+        float h = Input.GetAxis("Horizontal" + currentHandPlayer);
+        movement = new Vector3(h, v, 0f);
+
+
+        movement = movement * handSpeed * Time.deltaTime;
+
+        print(movement);
+        transform.position += movement;
+
     }
 }
