@@ -1,15 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+[System.Serializable]
+public class GamepadConnections : UnityEvent<int, int> { }
 
 public class Mg_GamepadInputAdapter : MonoBehaviour {
+
     public bool playstationController, xboxController, keyboard;
     public string[] currentControllers;
     public float controllerCheckTimer = 2;
-    public float controllerCheckTimerOG = 2;
 
     public int gamepad1;
+    int gamepad1Last;
     public int gamepad2;
+    int gamepad2Last;
+
+    GamepadConnections gamepadConnectionsChanged;
 
     private void Start () {
         ControllerCheck();
@@ -52,6 +60,10 @@ public class Mg_GamepadInputAdapter : MonoBehaviour {
             xboxController = false;
             playstationController = false;
         }
-        Invoke("ControllerCheck", 2);
+        if (gamepad1 != gamepad1Last || gamepad2 != gamepad2Last)
+            gamepadConnectionsChanged.Invoke(gamepad1, gamepad2);
+        gamepad1Last = gamepad1;
+        gamepad2Last = gamepad2;
+        Invoke("ControllerCheck", controllerCheckTimer);
     }
 }
