@@ -17,7 +17,7 @@ public class Mg_GamepadInputAdapter : MonoBehaviour {
     public int gamepad2;
     int gamepad2Last;
 
-    GamepadConnections gamepadConnectionsChanged;
+    public GamepadConnections gamepadConnectionsChanged;
 
     private void Start () {
         ControllerCheck();

@@ -7,7 +7,7 @@ public class Pj_CharController : MonoBehaviour {
     float playerSpeed = 500;
     bool jumping;
 
-    string playerController = "0";
+    string playerController = "1";
     float lastHorValue;
 
     public Rigidbody2D rb;

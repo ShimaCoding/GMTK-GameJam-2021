@@ -233,7 +233,7 @@ Transform:
   m_Children:
   - {fileID: 394679755}
   m_Father: {fileID: 388043067}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &174975185
 MonoBehaviour:
@@ -303,8 +303,8 @@ Transform:
   m_Children:
   - {fileID: 629906161}
   - {fileID: 1244037453}
-  - {fileID: 510775295}
   - {fileID: 174975183}
+  - {fileID: 510775295}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716170554e1714b4eb3247e1cffd0a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move: 1
+  move: 0
   backgroundPaperTransform:
   - {fileID: 1312639676}
   - {fileID: 1779615206}
@@ -517,7 +517,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -608,6 +608,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3887737596990397436, guid: edf84767d4c2ae940af3c2ace83e6672,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3887737596990397437, guid: edf84767d4c2ae940af3c2ace83e6672,
         type: 3}
@@ -787,9 +792,11 @@ MonoBehaviour:
   keyboard: 0
   currentControllers: []
   controllerCheckTimer: 2
-  controllerCheckTimerOG: 2
   gamepad1: 0
   gamepad2: 0
+  gamepadConnectionsChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1691613482
 Transform:
   m_ObjectHideFlags: 0
