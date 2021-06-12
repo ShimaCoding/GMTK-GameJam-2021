@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Mg_Sector : MonoBehaviour
 {
-    [SerializeField]
-    public bool isPlayerOnSector;
+    // Start is called before the first frame update
     void Start()
     {
         
@@ -14,15 +13,6 @@ public class Mg_Sector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            print("la puerca esta en el corral");
-            isPlayerOnSector = true;
-        }
-    }
-
 }
