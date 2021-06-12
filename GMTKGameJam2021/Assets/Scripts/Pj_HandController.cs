@@ -6,10 +6,11 @@ public class Pj_HandController : MonoBehaviour
 {
     [SerializeField]
     List<Sprite> handSprites;
-    string currentHandPlayer = "0";
+    string currentHandPlayer = "1";
     public float handSpeed = 10f;
     Vector3 movement;
     Transform sectorTransform;
+    bool isGrabbed;
 
     void Start()
     {
@@ -41,6 +42,7 @@ public class Pj_HandController : MonoBehaviour
             sectorTransform.SetParent(GameObject.Find("scenarioContainer").transform);
             sectorTransform.GetComponent<BoxCollider2D>().enabled = true;
             sectorTransform = null;
+            isGrabbed = false;
         }
 
     }
@@ -48,8 +50,9 @@ public class Pj_HandController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     { 
-        if (Input.GetButton("ButtonA" + currentHandPlayer) && other.GetComponent<Mg_Sector>() != null)
-        { 
+        if (Input.GetButton("ButtonA" + currentHandPlayer) && other.GetComponent<Mg_Sector>() != null && !isGrabbed && other.GetComponent<Mg_Sector>().isPlayerOnSector ==false)
+        {
+            isGrabbed = true;
             sectorTransform = other.transform;
             other.transform.SetParent(transform);
             sectorTransform.GetComponent<BoxCollider2D>().enabled = false;
