@@ -6,9 +6,10 @@ public class Pj_HandController : MonoBehaviour
 {
     [SerializeField]
     List<Sprite> handSprites;
-    string currentHandPlayer = "1";
+    string currentHandPlayer = "0";
     public float handSpeed = 10f;
     Vector3 movement;
+    Transform sectorTransform;
 
     void Start()
     {
@@ -18,11 +19,8 @@ public class Pj_HandController : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButton("ButtonA" + currentHandPlayer))
-        {
-            print("Button: " + "ButtonA" + currentHandPlayer + "Pressed");
-        }
-        if (Input.GetButton("ButtonB" + currentHandPlayer))
+
+        if (Input.GetButtonDown("ButtonB" + currentHandPlayer))
         {
             print("Button: " + "ButtonB" + currentHandPlayer + "Pressed");
         }
@@ -35,8 +33,28 @@ public class Pj_HandController : MonoBehaviour
 
         movement = movement * handSpeed * Time.deltaTime;
 
-        print(movement);
         transform.position += movement;
 
+
+        if (Input.GetButtonUp("ButtonA" + currentHandPlayer) && sectorTransform!=null)
+        {
+            sectorTransform.SetParent(GameObject.Find("scenarioContainer").transform);
+            sectorTransform.GetComponent<BoxCollider2D>().enabled = true;
+            sectorTransform = null;
+        }
+
     }
+
+
+    private void OnTriggerStay2D(Collider2D other)
+    { 
+        if (Input.GetButton("ButtonA" + currentHandPlayer) && other.GetComponent<Mg_Sector>() != null)
+        { 
+            sectorTransform = other.transform;
+            other.transform.SetParent(transform);
+            sectorTransform.GetComponent<BoxCollider2D>().enabled = false;
+        }
+    }
+
+
 }
